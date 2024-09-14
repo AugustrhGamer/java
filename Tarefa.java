@@ -1,33 +1,24 @@
 public class Tarefa {
+    private String titulo;
+    private String descricao;
     private int prioridade;
-    public Tarefa(int prioridade) {
-        if (isPrioridadeValida(prioridade)) {
-            this.prioridade = prioridade;
-        } else {
-            throw new IllegalArgumentException("Prioridade deve estar entre 1 e 5.");
-        }
+    private String prazo;
+
+    public Tarefa(String titulo, int prioridade) {
+        this.titulo = titulo;
+        this.prioridade = prioridade;
+        this.descricao = "Descrição padrão"; 
+        this.prazo = "Sem prazo definido";   
     }
-    private boolean isPrioridadeValida(int prioridade) {
-        return prioridade >= 1 && prioridade <= 5;
-    }
-    public int getPrioridade() {
-        return prioridade;
-    }
-    public void setPrioridade(int prioridade) {
-        if (isPrioridadeValida(prioridade)) {
-            this.prioridade = prioridade;
-        } else {
-            throw new IllegalArgumentException("Prioridade deve estar entre 1 e 5.");
-        }
+    public void exibirDetalhes() {
+        System.out.println("Título: " + titulo);
+        System.out.println("Descrição: " + descricao);
+        System.out.println("Prioridade: " + prioridade);
+        System.out.println("Prazo: " + prazo);
     }
 
     public static void main(String[] args) {
-        try {
-            Tarefa minhaTarefa = new Tarefa(3);
-            System.out.println("Prioridade da tarefa: " + minhaTarefa.getPrioridade());
-            Tarefa tarefaInvalida = new Tarefa(6); 
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
+        Tarefa tarefa = new Tarefa("Comprar leite", 2);
+        tarefa.exibirDetalhes();
     }
 }
